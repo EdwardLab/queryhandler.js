@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueryHandler Demo</title>
+    <script src="queryHandler.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+        a {
+            display: block;
+            margin: 10px 0;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>QueryHandler.js Demo</h1>
+    <p>
+        Current Page Query Parameters: 
+        <strong id="queryParamsDisplay"></strong>
+    </p>
+    <hr>
+    <h2>Dynamic Features</h2>
+
+    <!-- Dynamic Iframe Example -->
+    <h3>Dynamic Iframe</h3>
+    <iframe id="dynamicIframe" src="" title="Dynamic Iframe"></iframe>
+
+    <!-- Dynamic Link Example -->
+    <h3>Dynamic Link</h3>
+    <a id="dynamicLink" href="#">Click here to visit the dynamic link</a>
+
+    <!-- Redirect Example -->
+    <h3>Redirect Button</h3>
+    <button id="redirectBtn">Redirect to Target URL</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const baseUrl = 'https://hcb.hackclub.com/donations/start/digitalplat';
+
+            // Display current query parameters
+            const queryParams = QueryHandler.getAllQueryParams();
+            document.getElementById('queryParamsDisplay').textContent = JSON.stringify(queryParams);
+
+            // Set iframe dynamically
+            const iframe = document.getElementById('dynamicIframe');
+            QueryHandler.setIframeSrcWithQuery(iframe, baseUrl);
+
+            // Generate dynamic link
+            const dynamicLink = document.getElementById('dynamicLink');
+            QueryHandler.generateLinkWithQuery(baseUrl, dynamicLink);
+
+            // Redirect button action
+            document.getElementById('redirectBtn').addEventListener('click', () => {
+                QueryHandler.redirectToUrlWithQuery(baseUrl);
+            });
+        });
+    </script>
+</body>
+</html>
